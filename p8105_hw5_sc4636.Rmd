@@ -58,6 +58,17 @@ iris_na_replaced = map_df(iris_with_missing, function_na)
 ## Problem 2
 
 ```{r}
+name = list.files(path = "./data")
+data = name %>% map_df(~read_csv(file.path("data", .)))
+raw = cbind(name, data)
+
+cleaned = raw %>% 
+  mutate(name = str_remove(name, ".csv")) %>% 
+  separate(name, into = c("arm", "id"), sep = "_") %>% 
+  pivot_longer(week_1:week_8, names_to = "week", names_prefix = "week_",
+               values_to = "obs") %>% 
+  mutate_if(is.character, as.factor)
+
 
 ```
 
