@@ -57,6 +57,8 @@ iris_na_replaced = map_df(iris_with_missing, function_na)
 
 ## Problem 2
 
+* import and tidy data
+
 ```{r}
 name = list.files(path = "./data")
 data = name %>% map_df(~read_csv(file.path("data", .)))
@@ -68,9 +70,27 @@ cleaned = raw %>%
   pivot_longer(week_1:week_8, names_to = "week", names_prefix = "week_",
                values_to = "obs") %>% 
   mutate_if(is.character, as.factor)
-
-
 ```
+
+* spaghetti plot
+
+```{r}
+arm_lab = c(con = "Control arm", exp = "Experimental arm")
+
+cleaned %>% 
+  ggplot(aes(x = week, y = obs, group = id)) +
+  geom_line(aes(color = id)) +
+  labs(
+    title = "Observations on each subject over time",
+    x = "Week",
+    y = "Observations",
+    color = "Subject ID"
+  ) +
+  facet_grid(~arm,
+             labeller = labeller(arm = arm_lab))
+```
+
+The longitudinal study traced 20 subjects, who were divided into control and experimental arm for 8 weeks. In week 1, observations in both arms ranged between -1.25 and 3.75 with a wider distribution in experimental arm compared to control arm. By the end of the study, observations in control arm still ranged between -1.25 and 2.5 while ranged between 2.5 and 7.5 in experimental arm. Both groups had oscillated observations. However, a steady trend was observed in control arm as time passed by while an increasing trend was observed in experimental arm.
 
 ## Problem 3
 
