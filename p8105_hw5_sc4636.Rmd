@@ -145,14 +145,14 @@ power_pl = sim_result %>%
   geom_point() +
   geom_line() +
   labs(
-    title = "Power with different effect size",
-    x = "Effect size",
+    title = "Power with different β1 value",
+    x = "True value of β1",
     y = "Power"
   )
 power_pl
 ```
 
-From the above graph, it can be observed that as effect size increases, power would increase as well. When the effect size is 1, the power of the study is around 0.12. When the effect size is equal or larger than 4, the power is nearly more than 0.80.
+From the above graph, it can be observed that as true value of &beta;<sub>1</sub> increases, power would increase as well. Effect size measures the magnitude of an effect of interest. Correlation coefficient is widely used as effect size, which is a function of the estimated slope. Thus, as effect size increases, power increases.
 
 * Make a plot showing the average estimate of &beta;&#770;<sub>1</sub> on the y axis and the true value of &beta;<sub>1</sub> on the x axis. Make a second plot (or overlay on the first) the average estimate of &beta;&#770;<sub>1</sub> only in samples for which the null was rejected on the y axis and the true value of &beta;<sub>1</sub> on the x axis. Is the sample average of &beta;&#770;<sub>1</sub> across tests for which the null is rejected approximately equal to the true value of &beta;<sub>1</sub>? Why or why not?
 
@@ -182,7 +182,7 @@ mean_estimate %>%
   )
 ```
 
-The average estimate of &beta;&#770;<sub>1</sub> in all samples is close to the true value of &beta;<sub>1</sub>. If only samples for which the null was rejected are counted, the average estimate tends to inflate. Also, as the true value of &beta;<sub>1</sub> increases, the gap between the two average estimates decreases.
+The average estimate of &beta;&#770;<sub>1</sub> in all samples is close to the true value of &beta;<sub>1</sub>. If only samples for which the null was rejected are counted, the average estimate tends to inflate. Also, as the true value of &beta;<sub>1</sub> increases, the gap between the two average estimates decreases. &beta;&#770;<sub>1</sub> is an unbiased estimator of &beta;<sub>1</sub> regardless of hypothesis tesing.
 
 
 
